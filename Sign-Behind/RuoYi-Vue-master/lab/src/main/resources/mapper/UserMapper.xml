@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ruoyilab.mapper.UserMapper">
+
+    <!--int setpwd(@Param("password") String password);-->
+    <update id="setpwd" parameterType="string">
+        update user set password = #{password} where username = #{username}
+    </update>
+
+    <!--int deleteuser(@Param("username") String username);-->
+    <delete id="deleteuser" parameterType="string">
+        delete  from user where username = #{username}
+    </delete>
+
+    <!--List<User> selectalluser();-->
+    <select id="selectalluser" resultType="com.ruoyi.ruoyilab.vo.UserVo">
+        select id,username,name,sex,profession,email,state from user where username in (select username from journal GROUP BY username)
+    </select>
+
+    <!--List<User> selectallusername();-->
+    <select id="selectallusername" resultType="com.ruoyi.ruoyilab.pojo.User">
+        select username from user
+    </select>
+
+    <!--int updatestate(String username);-->
+    <update id="updatestate">
+        update user set state = 0  where username = #{username}
+    </update>
+
+    <!--User selectname(String username);-->
+    <select id="selectname" resultType="com.ruoyi.ruoyilab.pojo.User">
+        select name from user where username = #{username}
+    </select>
+
+    <!--List<User> selectnjname();-->
+    <select id="selectnjname" resultType="com.ruoyi.ruoyilab.pojo.User">
+        select name from user where username NOT IN (select username from journal where create_time BETWEEN #{starttime} AND #{endtime} GROUP BY username)
+    </select>
+
+
+    <!--删除用户时将关于改用户的所有信息都删除-->
+
+    <!--int deletejournal(String username);-->
+    <delete id="deletejournal">
+        delete from journal where username = #{username}
+    </delete>
+
+    <!--int deletejournal_time(@Param("username") String username);-->
+    <delete id="deletejournal_time">
+        delete from journal_time where username = #{username}
+    </delete>
+
+    <!--int deleteblog(@Param("username") String username);-->
+    <delete id="deleteblog">
+        delete from blog where username = #{username}
+    </delete>
+
+    <!--int deleteblogsumdata(@Param("username") String username);-->
+    <delete id="deleteblogsumdata">
+        delete from blogsumdata where username = #{username}
+    </delete>
+
+    <!--int deleteface(@Param("username") String username);-->
+    <delete id="deleteface">
+        delete from face where username = #{username}
+    </delete>
+
+    <!--int deleteschedule(@Param("username") String username);-->
+    <delete id="deleteschedule">
+        delete from schedule where uid = #{id}
+    </delete>
+
+    <!--int deleteuser_like(@Param("id") Integer id);-->
+    <delete id="deleteuser_like">
+        delete from user_like where uid = #{id}
+    </delete>
+
+    <!--List<Blog> selectblog(@Param("username") String username);-->
+    <select id="selectblog" resultType="com.ruoyi.ruoyilab.pojo.Blog">
+        select * from blog where username = #{username}
+    </select>
+</mapper>

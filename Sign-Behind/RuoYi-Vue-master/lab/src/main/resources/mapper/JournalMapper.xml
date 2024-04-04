@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ruoyilab.mapper.JournalMapper">
+
+    <!--List<Journal> selectjournal(@Param("username") String username);-->
+    <select id="selectjournal" resultType="com.ruoyi.ruoyilab.pojo.Journal">
+        select * from journal where username=#{username} and state = 0 order by id desc
+    </select>
+
+    <!--List<JournalVo> selectlist();-->
+    <select id="selectlist" resultType="com.ruoyi.ruoyilab.pojo.Journal">
+        SELECT * from journal where username = #{username} ORDER BY id desc limit 1
+    </select>
+
+    <!--int Repair(String username, String week, String all);-->
+    <update id="repair">
+        update journal_time set day_time = #{day},week_time = #{week},all_time = #{all} where username = #{username}
+    </update>
+
+    <!--Journal_time selecttime(String username);-->
+    <select id="selecttime" resultType="com.ruoyi.ruoyilab.pojo.Journal_time">
+        select * from journal_time where username = #{username}
+    </select>
+
+    <!--List<Journal> selecttimeall();-->
+    <select id="selecttimeall" resultType="com.ruoyi.ruoyilab.pojo.Journal">
+        select username,sum(sum_time) as sum_time from journal where create_time BETWEEN #{starttime} AND #{endtime} and state = 0 GROUP BY username
+    </select>
+
+    <!--Journal selectend(String username);-->
+    <select id="selectend" resultType="com.ruoyi.ruoyilab.pojo.Journal">
+        select * from journal where username = #{username} and state = 1
+    </select>
+
+
+    <!--Journal selectid(Integer id);-->
+    <select id="selectid" resultType="com.ruoyi.ruoyilab.pojo.Journal">
+        select * from journal where id = #{id}
+    </select>
+
+    <!--int deleteid(Integer id);-->
+    <delete id="deleteid">
+        delete from journal where id = #{id}
+    </delete>
+
+<!--int addjournal(@Param("username") String username,@Param("content") String content, @Param("starttime") String starttime,@Param("endtime") String endtime);-->
+    <insert id="addjournal">
+        insert into journal (username,content,create_time,update_time,sum_time) values (#{username},#{content},#{starttime},#{endtime},#{sumTime})
+    </insert>
+
+<!--int updatejournal(@Param("username") String username,@Param("content") String content,@Param("endtime") String endtime);-->
+    <update id="updatejournal">
+        update journal set content = #{content},update_time = #{endtime},sum_time = #{sumTime},state = 0 where username = #{username} and state = 1
+    </update>
+</mapper>
