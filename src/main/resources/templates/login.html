@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{../../static/css/Login.css}" />-->
+    <!--<script type="text/javascript" src="../../static/js/jquery-1.11.3.min.js"></script>-->
+
+</head>
+<body>
+<div>
+    <form action="/LoginCheck" method="get" onsubmit="return subForm()">
+        <table>
+            <tr>
+                <td><span>用户名：</span></td>
+                <td><input id="username" type="text" name="username" placeholder="请输入1-5个汉字" ><span id="d1"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span>密码：</span>
+                </td>
+                <td><input id="password" type="password" name="password" placeholder="请输入5-12个字母或数字" ><span id="d2"></span></td>
+            </tr>
+        </table>
+        <input id="s1" type="submit" value="登录">
+    </form>
+    <form action="/register" method="get" >
+        <input id="s2" type="submit" value="注册">
+    </form>
+</div>
+</body>
+</html>

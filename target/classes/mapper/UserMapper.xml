@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.UserMapper">
+
+    <!--Map<String, Object> selectMapById(Integer id);-->
+    <select id="selectUserById" resultType="com.chen.Sign.pojo.User" parameterType="int">
+        select * from user where id = #{id}
+    </select>
+
+    <!--  public User selectUserByName(String name);-->
+    <!-- public Map<String,Object> selectUserByName(String name)-->
+    <select id="selectUserByName" resultType="com.chen.Sign.pojo.User" parameterType="String">
+        select * from user where username = #{username}
+    </select>
+
+    <!--public User selectAll();-->
+    <select id="selectAll" resultType="com.chen.Sign.pojo.User">
+        select * from user
+    </select>
+
+    <!--public int updatePassword(String name);-->
+    <update id="updatePassword" parameterType="String">
+        update user set password = #{password} where username = #{username}
+    </update>
+
+    <!--public User selectallinformation(String name);-->
+    <select id="selectallinformation" resultType="com.chen.Sign.pojo.User" parameterType="String">
+        select * from user where username = #{username}
+    </select>
+
+    <!--public User editinformation(String name);-->
+    <update id="editinformation" parameterType="String">
+        update user set name = #{name},nickname = {nickname},sex = {sex},personalsignature = {personalsignature},
+                        email = #{email},telephone = #{telephone},grade = #{grade},profession = #{prefession} where username = #{username}
+    </update>
+
+    <!--public int insertProfile_photo(@Param("name") String name, @Param("profile_photo") String Filepath);-->
+    <insert id="insertProfile_photo" parameterType="String">
+        insert into user(profile_photo) values (#{profile_photo}) where username = #{username}
+    </insert>
+
+    <!-- User login(User user);-->
+    <select id="login" parameterType="com.chen.Sign.pojo.User" resultType="com.chen.Sign.pojo.User">
+        select * from user where username=#{username} and password = #{password}
+    </select>
+</mapper>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.baidu.aip:java-sdk:4.16.8">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/baidu/aip/java-sdk/4.16.8/java-sdk-4.16.8.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/baidu/aip/java-sdk/4.16.8/java-sdk-4.16.8-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/baidu/aip/java-sdk/4.16.8/java-sdk-4.16.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

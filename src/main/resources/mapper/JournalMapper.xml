@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.JournalMapper">
+
+    <!-- public int insertJournal(Journal journal);-->
+    <insert id="insertJournal" parameterType="com.chen.Sign.pojo.Journal">
+        insert into journal(username,content) values (#{username},#{content})
+    </insert>
+
+    <!--  Map<String,Object> selectByName(String name);-->
+    <select id="selectByName" resultType="java.util.Map">
+        select * from journal where username = #{username}
+    </select>
+
+    <!--public Map<String, Object> selectByNameDay(String name);-->
+    <select id="selectByNameDay" resultType="com.chen.Sign.pojo.Journal">
+        select * from journal where to_days(create_time) = to_days(now()) and username = #{username}
+    </select>
+
+    <!--public Map<String, Object> selectByNameWeek(String name);-->
+    <select id="selectByNameWeek" resultType="com.chen.Sign.pojo.Journal">
+        select * from journal where YEARWEEK(DATE_FORMAT(create_time,"%Y-%m-%d"),1) = YEARWEEK(NOW(),1) and username = #{username}
+    </select>
+
+    <!--public Map<String,Object> selectByNameAll(String name);-->
+    <select id="selectByNameAll" resultType="com.chen.Sign.pojo.Journal">
+        select sum_time from journal where username = #{username}
+    </select>
+</mapper>

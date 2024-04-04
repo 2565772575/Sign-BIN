@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.MessageMapper">
+
+    <!--public List<Message> selectMessage-->
+    <select id="selectMessage" resultType="com.chen.Sign.pojo.Message">
+        select * from message where (username=#{username} ) or (tousername = #{username}) order by createtime desc
+    </select>
+
+    <!--int updatestatus(@Param("username") String username,@Param("tousername") String tousername);-->
+    <update id="updatestatus">
+        update message set status = '1' where username = #{tousername} and tousername = #{username} and status = '0'
+    </update>
+</mapper>

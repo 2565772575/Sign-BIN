@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.BlogMapper">
+
+
+    <!--public Map<String,Object> selectByNameBlog(String name);-->
+    <select id="selectByNameBlog" resultType="java.util.Map">
+        select * from Blog where nickname = #{nickname}
+    </select>
+
+    <!--public int addviews(Blog blog);-->
+    <update id="addviews" parameterType="Integer">
+        update blog set views = #{views} where id = #{id}
+    </update>
+
+    <!-- public Page<User> selectPageVo(@Param("page") Page<User> page);-->
+    <select id="selectPageVo" resultType="Blog">
+        select title,nickname,outline,create_time from blog
+    </select>
+
+    <select id="select01" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            select * from blog where to_days(create_time) = to_days(now()) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by hot desc
+        </if>
+        <if test="type==1">
+            select * from blog where to_days(create_time) = to_days(now()) and title like '%${search}%' order by hot desc
+        </if>
+        /*select * from blog where to_days(create_time) = to_days(now()) and title like '%${search}%' order by hot desc*/
+    </select>
+
+    <select id="select02" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            select * from blog where date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by hot desc
+        </if>
+        <if test="type==1">
+            select * from blog where date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) and title like '%${search}%' order by hot desc
+        </if>
+        /*select * from blog where YEARWEEK(DATE_FORMAT(create_time,"%Y-%m-%d"),1) = YEARWEEK(NOW(),1) and title like '%${search}%' order by hot desc*/
+    </select>
+
+    <select id="select03" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            SELECT * FROM blog WHERE date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 1 MONTH) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by hot desc
+        </if>
+        <if test="type==1">
+            SELECT * FROM blog WHERE date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 1 MONTH) and title like '%${search}%' order by hot desc
+        </if>
+
+       /* SELECT * FROM blog WHERE DATE_FORMAT( create_time,'%Y%m') = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and title like '%${search}%' order by hot desc*/
+    </select>
+
+    <select id="select11" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            select * from blog where to_days(create_time) = to_days(now()) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by create_time desc
+        </if>
+        <if test="type==1">
+            select * from blog where to_days(create_time) = to_days(now()) and title like '%${search}%' order by create_time desc
+        </if>
+        /*select * from blog where to_days(create_time) = to_days(now()) and title like '%${search}%' order by create_time desc*/
+    </select>
+
+    <select id="select12" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            select * from blog where date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) and (title like '%${search}%' or tag like '%${search}%' or  username like '%${search}%') order by create_time desc
+        </if>
+        <if test="type==1">
+            select * from blog where date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) and title like '%${search}%' order by create_time desc
+        </if>
+        /*select * from blog where YEARWEEK(DATE_FORMAT(create_time,"%Y-%m-%d"),1) = YEARWEEK(NOW(),1) and title like '%${search}%' order by create_time desc*/
+    </select>
+
+    <select id="select13" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            SELECT * FROM blog WHERE date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 1 MONTH) and (title like '%${search}%' or tag like '%${search}%' or  username like '%${search}%') order by create_time desc
+        </if>
+        <if test="type==1">
+            SELECT * FROM blog WHERE date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 1 MONTH) and title like '%${search}%' order by create_time desc
+        </if>
+        /*SELECT * FROM blog WHERE DATE_FORMAT( create_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and title like '%${search}%' order by create_time desc*/
+    </select>
+
+    <select id="select21" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            select * from blog where to_days(create_time) = to_days(now()) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by gttu desc
+        </if>
+        <if test="type==1">
+            select * from blog where to_days(create_time) = to_days(now()) and title like '%${search}%' order by gttu desc
+        </if>
+        /*select * from blog where to_days(create_time) = to_days(now()) and title like '%${search}%' order by gttu desc*/
+    </select>
+
+    <select id="select22" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            select * from blog where date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by gttu desc
+        </if>
+        <if test="type==1">
+            select * from blog where date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) and title like '%${search}%' order by gttu desc
+        </if>
+        /*select * from blog where YEARWEEK(DATE_FORMAT(create_time,"%Y-%m-%d"),1) = YEARWEEK(NOW(),1) and title like '%${search}%' order by gttu desc*/
+    </select>
+
+    <select id="select23" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            SELECT * FROM blog WHERE date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 1 MONTH) and (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by gttu desc
+        </if>
+        <if test="type==1">
+            SELECT * FROM blog WHERE date(create_time) >= DATE_SUB(CURDATE(),INTERVAL 1 MONTH) and title like '%${search}%' order by gttu desc
+        </if>
+        /*SELECT * FROM blog WHERE DATE_FORMAT( create_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and title like '%${search}%' order by gttu desc*/
+    </select>
+
+    <select id="select00" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            SELECT * FROM blog WHERE  (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by hot desc
+        </if>
+        <if test="type==1">
+            SELECT * FROM blog WHERE  title like '%${search}%' order by hot desc
+        </if>
+        /*SELECT * FROM blog WHERE  title like '%${search}%' order by hot desc*/
+    </select>
+
+    <select id="select10" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            SELECT * FROM blog WHERE  (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by create_time desc
+        </if>
+        <if test="type==1">
+            SELECT * FROM blog WHERE  title like '%${search}%' order by create_time desc
+        </if>
+        /*SELECT * FROM blog WHERE  title like '%${search}%' order by create_time desc*/
+    </select>
+
+    <select id="select20" resultType="com.chen.Sign.pojo.Blog">
+        <if test="type==0">
+            SELECT * FROM blog WHERE  (title like '%${search}%' or tag like '%${search}%' or username like '%${search}%') order by gttu desc
+        </if>
+        <if test="type==1">
+            SELECT * FROM blog WHERE  title like '%${search}%' order by gttu desc
+        </if>
+       /* SELECT * FROM blog WHERE  title like '%${search}%' order by gttu desc*/
+    </select>
+</mapper>

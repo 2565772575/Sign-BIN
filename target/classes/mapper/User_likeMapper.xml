@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.User_likeMapper">
+
+<!--public boolean selectUser_likeUid(int uid);-->
+
+    <!--User_like selectgttustate(@Param("username") String username,@Param("id") Integer id);-->
+    <select id="selectgttustate" resultType="com.chen.Sign.pojo.User_like">
+        select * from user_like where uid = #{uid} and blog_id = #{id}
+    </select>
+</mapper>

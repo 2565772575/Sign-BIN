@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.EmailMapper">
+    <!--public User selectUserById(int id);-->
+    <select id="selectUserById" resultType="com.chen.Sign.pojo.User" parameterType="int">
+        select * from user where id = #{id}
+    </select>
+
+    <!--public User selectUserByName(String name);-->
+    <select id="selectUserByName" resultType="com.chen.Sign.pojo.User" parameterType="String">
+        select * from user where username = #{username}
+    </select>
+
+    <!--public int insertCode(String name);-->
+    <insert id="insertCode" parameterType="com.chen.Sign.pojo.User">
+        insert into user(code) values(#{code}) where username = #{username}
+    </insert>
+</mapper>

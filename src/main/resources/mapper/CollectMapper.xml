@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.Sign.mapper.CollectMapper">
+
+    <!--Collect selectcollectstate(@Param("username") String username, @Param("id") Integer id);-->
+    <select id="selectcollectstate" resultType="com.chen.Sign.pojo.Collect">
+        select * from collect where username = #{username} and blog_id = #{id}
+    </select>
+</mapper>

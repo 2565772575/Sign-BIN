@@ -1,0 +1,46 @@
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.chen.Sign.pojo
+
+
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 2565772575@qq.com
+    password: kzpdvruaxtgfecca
+    default-encoding: utf-8
+    protocol: smtp
+    port: 25
+    properties:
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+  rabbitmq:
+    host: 192.168.198.138
+    port: 5672
+    username: itcast
+    password: 123321
+    virtual-host: /
+
+lab:
+  path: D:\signImages\
+
+#lab:
+#  path: /usr/local/signt/images/
+
+face:
+  baidu:
+    appid: 31438616
+    key: VTZ9fLts81rro7O6s5F8xpST
+    secret: V5bP19OvVIrNQtop4a4t7rk0ime0jW4K
+
+ai:
+  appId: 31438616
+  apiKey: VTZ9fLts81rro7O6s5F8xpST
+  secretKey: V5bP19OvVIrNQtop4a4t7rk0ime0jW4K
+  imageType: BASE64
+  groupId: 1
+
+server:
+  max-http-header-size: 4048576
